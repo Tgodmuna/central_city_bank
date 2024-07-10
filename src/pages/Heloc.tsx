@@ -29,7 +29,8 @@ const Heloc:React.FC=()=>{
             <h6 className="text-xl font-semibold text-red-600 mb-2">Home Equity Line of Credit</h6>
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Put the equity in your home to work</h2>
             <p className="text-lg text-gray-700">
-              A HELOC could be your solution to paying a big expense. Learn more to see if it’s right for you.
+              A HELOC could be your solution to paying a  big expense. Learn more to see if it’s right for you.
+
             </p>
           </div>
         </div>

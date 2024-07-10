@@ -5,7 +5,7 @@ import Investments from "./components/Section2";
 import TravelInfoComponent from "./components/ExchangeIntro";
 import Security from "./components/Security";
 import About from "./components/About";
-// import INDEX from "./components/INDEX";
+import INDEX from "./components/INDEX";
 import ContactCenter from "./components/Contact";
 import CurrencyRates from "./components/CurrencyRate";
 import CurrencyConverter from "./components/CurrencyConverter";
@@ -22,12 +22,20 @@ import Profile from "./components/DashBoard/Profile";
 import UserSecurity from "./components/DashBoard/Security";
 import ResetPasswordForm from "./components/DashBoard/Reset";
 import Support from "./components/DashBoard/Support";
-import Admin from "./components/Admin/Admin";
 import NotifyUser from "./components/Admin/NotifyUser";
 import SendEmail from "./components/Admin/SendEmail";
 import CardManager from "./components/DashBoard/ManageCards";
 import UserList from "./components/Admin/MangeUser";
-import INDEX from "./components/INDEX";
+import Payroll from "./pages/Payroll";
+import Investement from "./pages/Investement";
+import Central from "./pages/Central";
+import OnlineMobile from "./pages/OnlineMobile";
+import History from "./pages/History";
+import Heloc from "./pages/Heloc";
+import PersonalChecking from "./pages/PersonalChecking";
+import GiftCard from "./pages/GiftCard";
+import HomeMortguage from "./pages/HomeMortguage";
+import { AdminAuthenticator } from "./components/Auth/AdminAuthenticator";
 export const UserDataCOntext = React.createContext<userDetailsType | null>(null);
 
 export type userDetailsType = {
@@ -59,8 +67,8 @@ export type userDetailsType = {
 };
 
 function App() {
-	const [USER, setUSER] = useState<userDetailsType | null>(null);
-	const [isAuthenticated, setisAuthenticated] = useState(false);
+      const [USER, setUSER] = useState<userDetailsType | null>(null);
+      const [isAuthenticated, setisAuthenticated] = useState(false);
 
 	useEffect(() => {
 		const storedUserDetails = sessionStorage.getItem("userDetails");
@@ -75,20 +83,6 @@ function App() {
 		}
 		if (token !== "") setisAuthenticated(true);
 	}
-
-	// const token = useRef<string | null>(null);
-
-	// // eslint-disable-next-line react-hooks/exhaustive-deps
-	// useEffect(() => {
-	// 	token.current = sessionStorage.getItem("userToken") || null;
-	// 	token.current ? setisAuthenticated(true) : setisAuthenticated(false);
-	// });
-
-	// const handlelogoutUser = () => {
-	// 	sessionStorage.removeItem("userToken");
-	// 	sessionStorage.removeItem("userDetails");
-	// 	setisAuthenticated(false);
-	// };
 
 	return (
 		<div className='App'>
@@ -110,6 +104,22 @@ function App() {
 					<Route path='/sign-up' element={<SignUpForm />} />
 					<Route path='/sign-in' element={<LoginForm extractUserDetails={extractUserDetails} />} />
 					<Route path='/otp' element={<OTPPage />} />
+					<Route path='/payroll' element={<Payroll />} />
+					<Route path='/investment' element={<Investement />} />
+					<Route path='/central' element={<Central />} />
+					<Route path='/onlinemobile' element={<OnlineMobile />} />
+					<Route path='/history' element={<History />} />
+					<Route path='/heloc' element={<Heloc />} />
+					<Route path='/personal-checking' element={<PersonalChecking />} />
+					<Route path='/gift-card' element={<GiftCard />} />
+					<Route path='/Home-mor' element={<HomeMortguage />} />
+
+
+
+
+
+
+
 
 					{/* user dashboard */}
 					<Route
@@ -147,16 +157,16 @@ function App() {
 						<Route path='/dashboard/support' element={<Support />} />
 					</Route>
 
-					{/* admin */}
-					<Route path='/admin' element={<Admin />}>
-						<Route path='/admin/notify-user' element={<NotifyUser />} />
-						<Route path='/admin/users' element={<UserList />} />
-						<Route path='/admin/send-email' element={<SendEmail />} />
-					</Route>
-				</Routes>
-			</UserDataCOntext.Provider>
-		</div>
-	);
+                              {/* admin */}
+                              <Route path='/admin' element={<AdminAuthenticator />}>
+                                    <Route path='/admin/notify-user' element={<NotifyUser />} />
+                                    <Route path='/admin/users' element={<UserList />} />
+                                    <Route path='/admin/send-email' element={<SendEmail />} />
+                              </Route>
+                        </Routes>
+                  </UserDataCOntext.Provider>
+            </div>
+      );
 }
 
 export default App;

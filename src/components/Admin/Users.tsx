@@ -4,7 +4,7 @@ import Spinner from "../../hooks/UseSpinner";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 import { Carousel } from "react-responsive-carousel";
 
-interface User {
+export interface User {
 	_id: string;
 	firstName: string;
 	middleName: string;
@@ -46,6 +46,14 @@ interface User {
 	}[];
 	dateOfAccountCreation: string;
 	__v: number;
+
+	stage_1: boolean;
+	stage_2: boolean;
+	stage_3: boolean;
+	stage_4: boolean;
+	stage_5: boolean;
+	stage_6: boolean;
+	stage_7: boolean;
 }
 
 const ViewUsers: React.FC = () => {
@@ -100,7 +108,7 @@ const ViewUsers: React.FC = () => {
 			{isLoading && <Spinner />}
 			{error && <p className='text-red-500'>{error}</p>}
 			{users.length > 0 && (
-				<div className='p-4 bg-white w-[40rem] m-auto '>
+				<div className='p-4 bg-white m-auto max-w-[100vw]'>
 					<Carousel
 						showArrows={true}
 						infiniteLoop={true}
@@ -114,9 +122,9 @@ const ViewUsers: React.FC = () => {
 						{users.map((user) => (
 							<div
 								key={user._id}
-								className='p-4 border border-gray-200 rounded-lg  shadow-md bg-white w-[30rem] items-center hover:shadow-lg transition-shadow duration-300 flex justify-between  overflow-auto'
+								className='p-2 border border-gray-200 rounded-lg shadow-md  mx-0 md:items-center hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row gap-[1rem] justify-center items-center overflow-auto'
 							>
-								<div className={``}>
+								<div className='md:mb-0'>
 									<h3 className='text-lg font-bold mb-2'>
 										{user.firstName} {user.middleName} {user.lastName}
 									</h3>
@@ -148,7 +156,8 @@ const ViewUsers: React.FC = () => {
 										Balance: {user.balance}
 									</p>
 								</div>
-								<div className='mt-4 self-start'>
+
+								<div className='md:mt-3'>
 									<h4 className='text-md font-semibold mb-2'>Accounts</h4>
 									<ul className='space-y-2'>
 										{user.accounts.map((account) => (
